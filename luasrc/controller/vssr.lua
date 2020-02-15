@@ -8,6 +8,7 @@ function index()
 end
 
     if nixio.fs.access("/usr/bin/ssr-redir") then
+	entry({"admin", "vpn"}, firstchild(), "VPN", 45).dependent = false	
         entry({"admin", "vpn", "vssr"},
               alias("admin", "vpn", "vssr", "client"), _("vssr"), 10).dependent =
             true -- 首页
@@ -21,10 +22,9 @@ end
 entry({"admin", "vpn", "vssr", "subscription"},cbi("vssr/subscription"), _("Subscription"),12).leaf = true
         entry({"admin", "vpn", "vssr", "control"}, cbi("vssr/control"),
               _("Access Control"), 13).leaf = true -- 访问控制
-          entry({"admin", "vpn", "vssr", "servers-list"}, cbi("vssr/servers-list"),
-              _("Severs Nodes"), 14).leaf = true
+       
         entry({"admin", "vpn", "vssr", "advanced"}, cbi("vssr/advanced"),
-              _("Advanced Settings"), 15).leaf = true -- 高级设置
+              _("Advanced Settings"), 14).leaf = true -- 高级设置
     elseif nixio.fs.access("/usr/bin/ssr-server") then
         entry({"admin", "vpn", "vssr"},
               alias("admin", "vpn", "vssr", "server"), _("vssr"), 10).dependent =
